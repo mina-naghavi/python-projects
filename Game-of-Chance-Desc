@@ -1,0 +1,14 @@
+It is a challenge project from [Code Academy](https://www.codecademy.com/practice/projects/games-of-chance)
+
+Please find descriptions below:
+1. Create a function that simulates flipping a coin and calling either "Heads" or "Tails".
+This function should also have a parameter that lets the player call either "Heads" or "Tails".
+If the player wins the game, the function should return the amount that they won.
+If the player loses the game, the function should return the amount that they lost as a negative number.
+
+2. Create a function that simulates playing the game Cho-Han. The function should simulate rolling two dice and adding the results together. 
+The player predicts whether the sum of those dice is odd or even and wins if their prediction is correct.
+
+3. Create a function that simulates two players picking a card randomly from a deck of cards. The higher number wins.
+
+4. Create a function that simulates some of the rules of roulette. A random number should be generated that determines which space the ball lands on.
