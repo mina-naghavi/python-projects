@@ -1,0 +1,153 @@
+import random
+
+money = 100
+
+#Write your game of chance functions here
+
+def flip_coin(bet_money,coin_bet):
+  print("Flipping the coin")
+  num = random.randint(1,100)
+  print("The random number is " + str(num))
+  if num <= 50:
+    coin_actual = "Head"
+  else:
+    coin_actual = "Tails"
+  print("Coin is flipped and it's " + coin_actual)
+  if coin_actual == coin_bet:
+    money_won = bet_money
+  else:
+    money_won = bet_money * -1
+  if money_won > 0:
+    print ("You have won " + str(money_won))
+  else:
+    print("You have lost " + str(money_won))
+  print("------------------------------")
+  return money_won
+  
+
+# cho_han section 4 ------------------------
+def cho_han(guess,bet):
+  print("playing Cho-Han")
+  die1 = random.randint(1,6)
+  die2 = random.randint(1,6)
+  print("First die is a " + str(die1) + "\nSecond die is a " + str(die2))
+  if ((die1 + die2) % 2) == 0:
+    actual = "Even"
+  else:
+    actual = "Odd"
+  print("Sum of the dice is an " + actual + " number")
+  if actual == guess:
+    money_won = bet
+    print("Yes! You have won " + str(money_won))
+  else:
+    money_won = bet * -1
+    print("oh no! You have lost " + str(money_won))
+  print("------------------------------")
+  return money_won
+
+# ------- section 5 ----------------
+def two_players(bet1,bet2):
+  print("now two players are betting")
+  suite = ['Club','Diamond','Heart','Spade']
+  card1 = random.randint(1,13)
+  suite1 = random.choice(suite)
+  card2 = random.randint(1,13)
+  suite2 = random.choice(suite)
+  print("card 2 first try is " + str(card2) + " of " + suite2)
+  while (card2 == card1) & (suite2 == suite1):
+    print("impossible happened!")
+    card2 = random.randint(1,13)
+    suite2 = random.choice(suite)
+    print("card 2 next try is " + str(card2) + " of " + suite2)  
+  print("card 1 is " + str(card1) + " of " + suite1)
+  print("card 2 is " + str(card2) + " of " + suite2)
+  if card1 > card2:
+    money_won = bet1
+    print("You have won " + str(bet1))
+  elif card1 < card2:
+    money_won = bet1 * -1
+    print("Other player has won " + str(bet2))
+  else:
+    if suite1 != suite2:
+      print("No one won!!!")
+      money_won = bet1 * -1
+    else:
+      print("Impossible!")
+  print("--------------------------")
+  return money_won
+
+# ------------- number 6 --------------
+  
+def roulette_one(guess,bet):
+  print("Playing Roulette 1")
+  num = random.randint(0,37)
+  print("the number is " + str(num))
+  if guess == num:
+    money_won = 35 * bet
+    print("You have won " + str(money_won))
+  else:
+    money_won = bet * -1
+    print("You lost " + str(money_won))
+  return money_won
+
+def roulette_two(guess,bet):
+  print("Playing Roulette 2")
+  num = random.randint(0,37)
+  print("the number from roulette two is " + str(num))
+  if num == 0:
+    money_won = bet * -1
+    print("You lost, it is a zero")
+  elif ((num % 2) == 0) and (guess == "Odd"):
+    money_won = bet * -1
+    print("It's EVEN, you lost")
+  elif ((num % 2) == 0) and (guess == "Even"):
+    money_won = bet
+    print("It's EVEN, you won!")
+  elif ((num % 2) != 0) and (guess == "Even"):
+    money_won = bet * -1
+    print("It's ODD, you lost")
+  else:
+    money_won = bet
+    print("It's ODD, you won!")
+  return money_won
+
+
+
+def roulette(guess,bet):
+  print("Roulette")
+  type_guess = type(guess)
+  if type_guess == str:
+    money_won = roulette_two(guess,bet)
+  else:
+    money_won = roulette_one(guess,bet)
+  print("-------------------------")
+  return money_won
+
+#Call your game of chance functions here
+#flip_coin(500,"Head")
+# cho_han("Odd",213)
+# two_players(100,200)
+#roulette("Even",200)
+
+money += flip_coin(10, "Head")
+money += cho_han("Odd", 10)
+money += two_players(10,20)
+money += roulette("Odd",10)
+print(money)
+
+# i = 0
+# while i < 1000:
+#   two_players(100,200)
+#   print("-------------------")
+#   i += 1
+
+# for i in range(0,1000):
+#   money += flip_coin(10, "Head")
+#   money += cho_han("Odd", 10)
+#   money += two_players(10,20)
+#   money += roulette("Odd",10)
+#   print(money)
+#   money = 100
+#   print("________________________")
+#   print("________________________\n")
+
