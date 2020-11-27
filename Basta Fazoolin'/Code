@@ -1,0 +1,75 @@
+from datetime import time
+
+# creating Menu class
+class Menu:
+  def __init__(self, name, items, start_time, end_time):
+    self.name = name
+    self.items = items
+    self.start_time = start_time
+    self.end_time = end_time
+    self.representative_string = time.strftime(self.start_time, '%I%P') + " to " + time.strftime(self.end_time, '%I%P') 
+
+  def __repr__(self):
+    return "{menue} menu available from {time}".format(menue=self.name, time=self.representative_string)
+
+  def calculate_bill(self, purchased_items):
+    #self.purchased_items = purchased_items
+    bill_total = 0
+    for item in purchased_items:
+      try:
+        bill_total += self.items[item]
+      except:
+        print(item + " is not in the " + self.name + " menu.")
+    return bill_total
+########## end of Menu class ###########
+
+# our brunch menu
+brunch = Menu("brunch", {'pancakes': 7.50, 'waffles': 9.00, 'burger': 11.00, 'home fries': 4.50, 'coffee': 1.50, 'espresso': 3.00, 'tea': 1.00, 'mimosa': 10.50, 'orange juice': 3.50}, time(11, 0, 0), time(16, 0, 0))
+
+# our early bird menu
+early_bird = Menu("early-bird", {'salumeria plate': 8.00, 'salad and breadsticks (serves 2, no refills)': 14.00, 'pizza with quattro formaggi': 9.00, 'duck ragu': 17.50, 'mushroom ravioli (vegan)': 13.50, 'coffee': 1.50, 'espresso': 3.00,}, time(15, 0, 0), time(18, 0, 0))
+
+# our dinner menu
+dinner = Menu("dinner", {'crostini with eggplant caponata': 13.00, 'ceaser salad': 16.00, 'pizza with quattro formaggi': 11.00, 'duck ragu': 19.50, 'mushroom ravioli (vegan)': 13.50, 'coffee': 2.00, 'espresso': 3.00,}, time(17, 0, 0), time(23, 0, 0))
+
+# our kids menu
+kids = Menu("kids", {'chicken nuggets': 6.50, 'fusilli with wild mushrooms': 12.00, 'apple juice': 3.00}, time(11, 0, 0), time(21, 0, 0))
+
+# testing the Menu class representation method
+print(brunch)
+
+order_one = ['pancakes', 'home fries', 'pancakes', 'coffee']
+order_two = ['salumeria plate', 'mushroom ravioli (vegan)']
+
+# testing the Menu class calculate_bill method
+print(brunch.calculate_bill(order_one))
+print(early_bird.calculate_bill(order_two))
+
+
+###### creating Franchise class ########
+class Franchise:
+  def __init__(self, address, menus):
+    self.address = address
+    self.menus = menus
+
+  def __repr__(self):
+    return "Our address is {address}".format(address=self.address)
+
+  def available_menus(self, time):
+    for menu in self.menus:
+      pass
+
+
+########## end of Franchise class ###########
+
+flagship_store = Franchise("1232 West End Road", ['brunch', 'early-bird', 'dinner', 'kids'])
+new_installment = Franchise("12 East Mulberry Street", ['brunch', 'early-bird', 'dinner', 'kids'])
+
+# test the Franchise class representation method
+print(new_installment)
+
+
+
+
+
+
