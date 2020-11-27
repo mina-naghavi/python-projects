@@ -1,6 +1,6 @@
 from datetime import time
 
-# creating Menu class
+##### creating Menu class ############
 class Menu:
   def __init__(self, name, items, start_time, end_time):
     self.name = name
@@ -22,6 +22,7 @@ class Menu:
         print(item + " is not in the " + self.name + " menu.")
     return bill_total
 ########## end of Menu class ###########
+
 
 # our brunch menu
 brunch = Menu("brunch", {'pancakes': 7.50, 'waffles': 9.00, 'burger': 11.00, 'home fries': 4.50, 'coffee': 1.50, 'espresso': 3.00, 'tea': 1.00, 'mimosa': 10.50, 'orange juice': 3.50}, time(11, 0, 0), time(16, 0, 0))
@@ -61,9 +62,8 @@ class Franchise:
       if (time >= menu.start_time and time <= menu.end_time):
         available_menu.append(menu)
     return available_menu
-
-
 ########## end of Franchise class ###########
+
 
 menus = [brunch, early_bird, dinner, kids]
 
@@ -82,9 +82,8 @@ class Business:
   def __init__(self, name, franchises):
     self.name = name
     self.franchises = franchises
-
-
 ########## end of Business class ###########
+
 
 first_business = Business("Basta Fazoolin' with my Heart", [new_installment, flagship_store])
 
