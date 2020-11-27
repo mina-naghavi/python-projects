@@ -56,17 +56,49 @@ class Franchise:
     return "Our address is {address}".format(address=self.address)
 
   def available_menus(self, time):
+    available_menu = []
     for menu in self.menus:
-      pass
+      if (time >= menu.start_time and time <= menu.end_time):
+        available_menu.append(menu)
+    return available_menu
 
 
 ########## end of Franchise class ###########
 
-flagship_store = Franchise("1232 West End Road", ['brunch', 'early-bird', 'dinner', 'kids'])
-new_installment = Franchise("12 East Mulberry Street", ['brunch', 'early-bird', 'dinner', 'kids'])
+menus = [brunch, early_bird, dinner, kids]
+
+flagship_store = Franchise("1232 West End Road", menus)
+new_installment = Franchise("12 East Mulberry Street", menus)
 
 # test the Franchise class representation method
 print(new_installment)
+
+# test the Franchise class available_menus method
+print(flagship_store.available_menus(time(19, 0, 0)))
+
+
+###### creating Business class ########
+class Business:
+  def __init__(self, name, franchises):
+    self.name = name
+    self.franchises = franchises
+
+
+########## end of Business class ###########
+
+first_business = Business("Basta Fazoolin' with my Heart", [new_installment, flagship_store])
+
+arepas_items = {'arepa pabellon': 7.00, 'pernil arepa': 8.50, 'guayanes arepa': 8.00, 'jamon arepa': 7.50}
+
+arepas_menu = Menu('arepa', arepas_items, time(10, 0, 0), time(20, 0, 0))
+
+arepas_place = Franchise("189 Fitzgerald Avenue", [arepas_menu])
+
+arepas_business = Business("Take a' Arepa", [arepas_place])
+
+# test the Business class
+print(arepas_business.franchises[0].available_menus(time(19, 0, 0)))
+print(arepas_business.franchises)
 
 
 
