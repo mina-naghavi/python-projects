@@ -1,0 +1,91 @@
+####### creating class Art #############
+class Art:
+  def __init__(self, artist, title, year, medium, owner):
+    self.artist = artist
+    self.title = title
+    self.medium = medium
+    self.year = year
+    self.owner = owner
+
+  def __repr__(self):
+    return "{artist}. \"{title}\". {year}, {medium}. {owner_name}, {owner_location}.".format(artist=self.artist, title=self.title, year=self.year, medium=self.medium, owner_name=self.owner.name, owner_location=self.owner.location)
+####### end of class Art #############
+
+
+####### creating Marketplace class ######
+class Marketplace:
+  def __init__(self, listings):
+    self.listings = listings
+
+  def add_listing(self, new_listing):
+    self.listings.append(new_listing)
+
+  def remove_listing(self, item_to_remove):
+    self.listings.remove(item_to_remove)
+
+  def show_listings(self):
+    for item in self.listings:
+      return item
+####### end of Marketplace class ######
+
+
+####### creating Client class ######
+class Client:
+  def __init__(self, name, location, is_museum):
+    self.name = name
+    self.location = location
+    self.is_museum = is_museum
+
+  def sell_artwork(self, artwork, price):
+    if artwork.owner == self:
+      new_listing = Listing(artwork, price, artwork.owner)
+      veneer.add_listing(new_listing)
+
+  def buy_artwork(self, artwork):
+    if artwork.owner.name != self:
+      for listing in veneer.listings:
+        if listing.art == artwork:
+          artwork.owner = self
+          veneer.remove_listing(listing)
+####### end of Client class ######
+
+
+####### creating Listing class ######
+class Listing:
+  def __init__(self, art, price, seller):
+    self.art = art
+    self.price = price
+    self.seller = seller
+
+  def __repr__(self):
+    return "{art}, {price}".format(art=self.art.title, price=self.price)
+####### end of Listing class ######
+
+
+veneer = Marketplace([])
+print(veneer.show_listings())
+
+edytta = Client("Edytta Halpirt", "Private Collection", False)
+moma = Client("The MOMA", "New York", True)
+
+girl_with_mandolin = Art("Picasso, Pablo", "Girl with a Mandolin (Fanny Tellier)", 1910, "oil on canvas", edytta)
+print(str(girl_with_mandolin) + "\n")
+
+edytta.sell_artwork(girl_with_mandolin, "$6M (USD)")
+
+print("Listing at the veneer after adding the available artwork for sell:\n" + str(veneer.show_listings()) + "\n")
+
+print(veneer.show_listings())
+
+
+moma.buy_artwork(girl_with_mandolin)
+
+print("\nArtwork details after transaction:\n" + str(girl_with_mandolin) + "\n")
+
+print("Listing at the veneer after transaction:\n" + str(veneer.show_listings()) + "\n")
+
+
+
+
+
+
