@@ -1,0 +1,15 @@
+print("M   M   N   N\nMM MM   NN  N\nMM MM   N N N\nM M M   N  NN\nM   M   N   N\nM   M   N   N\nM   M   N   N")
+
+# Mina Naghavi
+# I'm learning python!!!!
+
+initials = """
+M   M   N   N
+MM MM   NN  N
+MM MM   N N N
+M M M   N  NN
+M   M   N   N
+M   M   N   N
+M   M   N   N"""
+
+print(initials)
